@@ -3,5 +3,6 @@ fastapi-pagination==0.12.24
 google-auth==2.29.0
 python-dotenv==1.0.1
 PyJWT==2.8.0
+pytz==2024.1
 requests==2.32.3
 SQLAlchemy==2.0.30

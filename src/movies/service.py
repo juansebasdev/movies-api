@@ -4,6 +4,7 @@ from src.database import ConfigDatabase
 from src.movies.config import ERRORS
 from src.movies.models import Movie
 from src.movies.schemas import MovieCreate
+from src.wtapi.client import WTClient
 
 
 class MovieService:
@@ -11,7 +12,18 @@ class MovieService:
         self.db = ConfigDatabase()
 
     def create_movie(self, movie: MovieCreate, user_id: int):
-        movie = Movie(**movie.model_dump(), owner_id=user_id)
+        data = movie.model_dump()
+        movie = Movie(**data, owner_id=user_id)
+        if data.get("broadcast") and data.get("area_location"):
+            if '/' not in data["area_location"]:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=ERRORS["BAD_REQUEST"],
+                )
+            area, location = data["area_location"].split("/")
+            wt_client = WTClient(area=area, location=location)
+            movie.utc_offset = wt_client.get_time()["utc_offset"]
+            movie.set_datetime_with_offset(data.get("localtime"), movie.utc_offset)
         self.db.session.add(movie)
         self.db.session.commit()
         return movie
