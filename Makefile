@@ -19,3 +19,7 @@ install:		## Install dependencies
 	pip3 install -r requirements-dev.txt
 	pip3 install -r requirements-test.txt
 	pip3 install -r requirements.txt
+
+.PHONY: test
+test:			## Run tests
+	pytest tests

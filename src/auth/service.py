@@ -32,6 +32,9 @@ class UserService:
         self.db.session.add(user)
         self.db.session.commit()
 
+    def get_user_by_email(self, email: str) -> User:
+        return self.db.session.query(User).filter_by(email=email).first()
+
     def user_exists(self, email: str) -> bool:
         user = self.db.session.query(User).filter_by(email=email).first()
         return True if user else False

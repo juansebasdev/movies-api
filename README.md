@@ -46,3 +46,16 @@ This is an REST API for users to share and recommend their favorite movies.
 
     > [!NOTE]
     > If you are using `VSCode` editor, there's a launch.json file in the project for debugging
+
+## Testing
+Unit tests are included in the project. To run them, just execute
+
+```sh
+pytest tests
+```
+
+or using the `make` command within the Makefile
+
+```sh
+make test
+```
