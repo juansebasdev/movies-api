@@ -20,6 +20,10 @@ install:		## Install dependencies
 	pip3 install -r requirements-test.txt
 	pip3 install -r requirements.txt
 
+.PHONY: migrate
+migrate:		## Run migrations
+	alembic upgrade head
+
 .PHONY: test
 test:			## Run tests
 	pytest tests

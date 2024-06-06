@@ -37,7 +37,32 @@ This is an REST API for users to share and recommend their favorite movies.
     make install
     ```
 
-4. Run project
+4. Setup environment variables
+   
+   Copy .env.example file and fill the fields with the values, following the description
+
+   ```sh
+   cp .env.example .env
+   ```
+
+   > [!NOTE]
+    > To setup `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, you __MUST__ create a project in google console to be able to manage and create this credentials
+
+5. Execute Migrations
+   
+   This step will setup the database with the necessary tables, you can run
+
+   ```sh
+   alembic upgrade head
+   ````
+
+   or use the Makefile
+   ```sh
+   make migrate
+   ```
+
+
+6. Run project
 
     To run the project, use this command
     ```sh

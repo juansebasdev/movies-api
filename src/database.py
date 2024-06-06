@@ -3,6 +3,7 @@ from requests import Session
 from sqlalchemy import Connection, Engine
 from sqlalchemy.orm import sessionmaker
 
+from src.config import SQL_URL
 from src.utils import Singleton
 
 
@@ -12,7 +13,7 @@ class ConfigDatabase(metaclass=Singleton):  # noqa: F821
     session: Session = None
 
     def __init__(self):
-        self.engine = sqlalchemy.create_engine("sqlite:///./test.db", echo=True)
+        self.engine = sqlalchemy.create_engine(SQL_URL, echo=True)
         self.connection = self.engine.connect()
         SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.session = SessionLocal()
