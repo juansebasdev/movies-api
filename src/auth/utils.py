@@ -1,5 +1,5 @@
 import logging
-from fastapi import HTTPException, Request, status
+from fastapi import Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from google.oauth2 import id_token
 from google.auth.transport import requests
@@ -17,22 +17,13 @@ class JWTBearer(HTTPBearer):
             JWTBearer, self
         ).__call__(request)
         if credentials:
-            if not credentials.scheme == "Bearer":
-                raise HTTPException(
-                    status_code=status.HTTP_403_FORBIDDEN,
-                    detail="Invalid authentication scheme",
-                )
-            if not JWTBearer.verify_jwt(credentials.credentials):
-                raise HTTPException(
-                    status_code=status.HTTP_403_FORBIDDEN,
-                    detail="Invalid Token or expired Token",
-                )
+            if not credentials.scheme == "Bearer" or not JWTBearer.verify_jwt(
+                credentials.credentials
+            ):
+                return None
             return credentials.credentials
         else:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Invalid authorization code",
-            )
+            return None
 
     @staticmethod
     def verify_jwt(jwt_token: str) -> bool:
@@ -43,27 +34,6 @@ class JWTBearer(HTTPBearer):
             logging.error(e)
             return False
 
-
-class OptionalJWTBearer(HTTPBearer):
-    def __init__(self, auto_error: bool = True):
-        super(OptionalJWTBearer, self).__init__(auto_error=auto_error)
-
-    async def __call__(self, request: Request):
-        try:
-            credentials: HTTPAuthorizationCredentials = await super(
-                OptionalJWTBearer, self
-            ).__call__(request)
-            if credentials:
-                if not credentials.scheme == "Bearer" or not JWTBearer.verify_jwt(
-                    credentials.credentials
-                ):
-                    return None
-                return credentials.credentials
-            else:
-                return None
-        except Exception as e:
-            logging.error(e)
-            return None
 
 class UserExtractor:
     def __init__(self, id_token: str) -> None:

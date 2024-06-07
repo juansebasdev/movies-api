@@ -1,6 +1,8 @@
 from typing import Optional, Union
 from pydantic import BaseModel
 
+from src.config import DATA_REPOSITORY
+
 
 class MovieBase(BaseModel):
     title: str
@@ -42,6 +44,39 @@ class MovieCreate(MovieBase):
 class MovieListPublic(MovieBase):
     id: Union[int, str]
 
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "id": 1 if DATA_REPOSITORY == "SQL" else "66623cc65caf06fe5640a188",
+                "title": "The Shawshank Redemption",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "director": "Frank Darabont",
+                "year": 1994,
+                "genre": "Drama",
+                "rating": 9.3,
+                "broadcast": "Netflix",
+                "area_location": "America/Santiago",
+                "localtime": "2021-08-01 20:00:00",
+            }
+        }
+
 
 class MovieListUser(MovieListPublic):
     is_public: bool
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "id": 1 if DATA_REPOSITORY == "SQL" else "66623cc65caf06fe5640a188",
+                "title": "The Shawshank Redemption",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "director": "Frank Darabont",
+                "year": 1994,
+                "genre": "Drama",
+                "rating": 9.3,
+                "is_public": True,
+                "broadcast": "Netflix",
+                "area_location": "America/Santiago",
+                "localtime": "2021-08-01 20:00:00",
+            }
+        }

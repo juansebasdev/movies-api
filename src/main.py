@@ -11,6 +11,12 @@ Base.metadata.create_all(bind=SQLDatabase().engine)
 
 app = FastAPI(
     title="Movies API",
+    summary="API to manage movies",
+    contact= {
+        "name": "Juan Sebastian Bravo",
+        "email": "jbravomeneses@gmail.com",
+        "url": "https://github.com/juansebasdev",
+    }
 )
 app.include_router(auth_router, prefix="/auth")
 app.include_router(movies_router, prefix="/movies")

@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import RedirectResponse
 
 
+from src.auth.schemas import LoginResponse
 from src.auth.service import GoogleAuthenticator, UserService
 from src.auth.utils import UserExtractor
 from src.config import GOOGLE_CLIENT_ID, HOST, PORT
@@ -11,13 +11,18 @@ from src.config import GOOGLE_CLIENT_ID, HOST, PORT
 router = APIRouter()
 
 
-@router.get("/login", tags=["auth"])
+@router.get(
+    "/login",
+    tags=["Auth"],
+    description="Returns the URL to login with Google",
+    response_model=LoginResponse,
+)
 async def login():
     redirect_uri = f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={GOOGLE_CLIENT_ID}&redirect_uri=http://{HOST}:{PORT}/auth/callback&scope=openid%20profile%20email&access_type=offline"
-    return RedirectResponse(redirect_uri, status_code=302)
+    return {"url": redirect_uri}
 
 
-@router.get("/callback", tags=["auth"])
+@router.get("/callback", tags=["Auth"], include_in_schema=False)
 async def callback(code: str):
     try:
         authenticator = GoogleAuthenticator(code)

@@ -2,12 +2,18 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, status
 
 from src.wtapi.client import WTClient
+from src.wtapi.schemas import WTResponse
 
 
 router = APIRouter()
 
 
-@router.get("", tags=["World Time API"])
+@router.get(
+    "",
+    tags=["World Time API"],
+    description="Returns the current time based on the area/location.",
+    response_model=WTResponse,
+)
 async def time(area_location: str, region: Optional[str] = None):
     if "/" not in area_location:
         raise HTTPException(
