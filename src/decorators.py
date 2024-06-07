@@ -5,13 +5,13 @@ from fastapi import HTTPException, status
 
 def is_authorized(func):
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    async def wrapper(*args, **kwargs):
         if "credentials" in kwargs and kwargs["credentials"] is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Unauthorized",
             )
-        return func(*args, **kwargs)
+        return await func(*args, **kwargs)
     return wrapper
 
 def handler_nosql_id(func):

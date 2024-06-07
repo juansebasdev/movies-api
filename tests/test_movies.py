@@ -282,7 +282,7 @@ def test_get_private_movie():
                 genre="Science Fiction",
                 rating=8.7,
                 is_public=False,
-                owner=mock_get_user.return_value,
+                owner_id=mock_get_user.return_value.id,
                 broadcast=None,
                 area_location=None,
                 utc_offset=None,
