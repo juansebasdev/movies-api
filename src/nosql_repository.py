@@ -24,7 +24,7 @@ class NoSQLRepository(IRepository):
 
     @handler_id_retrieve_list
     def get_all_for_user(self, user_id):
-        return self.collection.find({"owner_id": user_id})
+        return self.collection.find({"owner_id": ObjectId(user_id)})
 
     @handler_nosql_id
     @handler_id_retrieve
