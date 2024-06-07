@@ -1,0 +1,130 @@
+{
+  "users": [
+    {
+      "email": "jbravomeneses@gmail.com",
+      "is_active": true
+    }
+  ],
+  "movies": [
+    {
+      "title": "The Shawshank Redemption",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "director": "Frank Darabont",
+      "year": 1994,
+      "genre": "Drama",
+      "rating": 9.3,
+      "is_public": true,
+      "broadcast": "Netflix",
+      "area_location": "America/Santiago",
+      "localtime": "2021-08-01 20:00:00"
+    },
+    {
+      "title": "Inception",
+      "description": "A thief who steals corporate secrets through the use of dream-sharing technology.",
+      "director": "Christopher Nolan",
+      "year": 2010,
+      "genre": "Sci-Fi",
+      "rating": 8.8,
+      "is_public": true,
+      "broadcast": null,
+      "area_location": null,
+      "localtime": null
+    },
+    {
+      "title": "Interstellar",
+      "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+      "director": "Christopher Nolan",
+      "year": 2014,
+      "genre": "Adventure",
+      "rating": 8.6,
+      "is_public": false,
+      "broadcast": "HBO Max",
+      "area_location": "Europe/London",
+      "localtime": "2021-09-01 18:00:00"
+    },
+    {
+      "title": "The Godfather",
+      "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+      "director": "Francis Ford Coppola",
+      "year": 1972,
+      "genre": "Crime",
+      "rating": 9.2,
+      "is_public": true,
+      "broadcast": "Amazon Prime",
+      "area_location": "America/New_York",
+      "localtime": "2021-07-15 21:00:00"
+    },
+    {
+      "title": "Pulp Fiction",
+      "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+      "director": "Quentin Tarantino",
+      "year": 1994,
+      "genre": "Crime",
+      "rating": 8.9,
+      "is_public": false,
+      "broadcast": null,
+      "area_location": null,
+      "localtime": null
+    },
+    {
+      "title": "The Dark Knight",
+      "description": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+      "director": "Christopher Nolan",
+      "year": 2008,
+      "genre": "Action",
+      "rating": 9.0,
+      "is_public": true,
+      "broadcast": "Hulu",
+      "area_location": "Asia/Tokyo",
+      "localtime": "2021-10-01 19:00:00"
+    },
+    {
+      "title": "Forrest Gump",
+      "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
+      "director": "Robert Zemeckis",
+      "year": 1994,
+      "genre": "Drama",
+      "rating": 8.8,
+      "is_public": true,
+      "broadcast": "Disney+",
+      "area_location": "Australia/Sydney",
+      "localtime": "2021-11-01 17:00:00"
+    },
+    {
+      "title": "Fight Club",
+      "description": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
+      "director": "David Fincher",
+      "year": 1999,
+      "genre": "Drama",
+      "rating": 8.8,
+      "is_public": false,
+      "broadcast": null,
+      "area_location": null,
+      "localtime": null
+    },
+    {
+      "title": "The Matrix",
+      "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+      "director": "Lana Wachowski, Lilly Wachowski",
+      "year": 1999,
+      "genre": "Sci-Fi",
+      "rating": 8.7,
+      "is_public": true,
+      "broadcast": "Netflix",
+      "area_location": "America/Los_Angeles",
+      "localtime": "2021-12-01 20:00:00"
+    },
+    {
+      "title": "Gladiator",
+      "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+      "director": "Ridley Scott",
+      "year": 2000,
+      "genre": "Action",
+      "rating": 8.5,
+      "is_public": true,
+      "broadcast": "Peacock",
+      "area_location": "Europe/Berlin",
+      "localtime": "2022-01-01 18:00:00"
+    }
+  ]
+}

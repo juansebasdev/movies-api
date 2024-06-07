@@ -41,5 +41,4 @@ def handler_id_retrieve_list(func):
             obj = args[0].model(**obj)
             new_objs.append(obj)
         return new_objs
-
     return wrapper

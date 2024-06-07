@@ -48,18 +48,15 @@ This is an REST API for users to share and recommend their favorite movies.
    > [!NOTE]
     > To setup `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, you __MUST__ create a project in google console to be able to manage and create this credentials
 
-5. Execute Migrations
+5. Setup database and sample data
    
-   This step will setup the database with the necessary tables, you can run
+   This step will setup the database with the necessary tables/collections and fill columns/properties with sample data, you must run
 
    ```sh
-   alembic upgrade head
-   ````
-
-   or use the Makefile
-   ```sh
-   make migrate
+   make setup
    ```
+   > [!NOTE]
+   > It will setup an SQL or NoSQL database according to the value of `DATA_REPOSITORY` variable in `.env` file
 
 
 6. Run project
