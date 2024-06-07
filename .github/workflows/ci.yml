@@ -4,6 +4,12 @@ on: [push]
 
 jobs:
   run-tests:
+    env:
+      GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      SQL_URL: ${{ secrets.SQL_URL }}
+      MONGO_URL: ${{ secrets.MONGO_URL }}
+      DATA_REPOSITORY: ${{ secrets.DATA_REPOSITORY }}
     name: Run Application Tests
     runs-on: ubuntu-latest
 
