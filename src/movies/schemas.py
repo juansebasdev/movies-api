@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 from pydantic import BaseModel
 
 
@@ -40,7 +40,7 @@ class MovieCreate(MovieBase):
 
 
 class MovieListPublic(MovieBase):
-    id: int
+    id: Union[int, str]
 
 
 class MovieListUser(MovieListPublic):

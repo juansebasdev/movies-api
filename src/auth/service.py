@@ -1,7 +1,13 @@
 import requests
 from src.auth.models import User
-from src.database import ConfigDatabase
-from src.config import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, HOST, PORT
+from src.database import NoSQLDatabase, SQLDatabase
+from src.config import (
+    DATA_REPOSITORY,
+    GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET,
+    HOST,
+    PORT,
+)
 
 
 class GoogleAuthenticator:
@@ -25,16 +31,22 @@ class GoogleAuthenticator:
 
 class UserService:
     def __init__(self) -> None:
-        self.db = ConfigDatabase()
+        if DATA_REPOSITORY == "NOSQL":
+            from src.nosql_repository import NoSQLRepository
+
+            self.repo = NoSQLRepository(NoSQLDatabase(), "users", User)
+        else:
+            from src.sql_repository import SQLRepository
+
+            self.repo = SQLRepository(SQLDatabase(), User)
 
     def create_user(self, email: str) -> None:
-        user = User(email=email, is_active=True)
-        self.db.session.add(user)
-        self.db.session.commit()
+        data = {"email": email, "is_active": True}
+        self.repo.create(data)
 
     def get_user_by_email(self, email: str) -> User:
-        return self.db.session.query(User).filter_by(email=email).first()
+        return self.repo.get(filters={"email": email})
 
     def user_exists(self, email: str) -> bool:
-        user = self.db.session.query(User).filter_by(email=email).first()
+        user = self.repo.get(filters={"email": email})
         return True if user else False

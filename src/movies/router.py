@@ -1,3 +1,4 @@
+from typing import Union
 from fastapi import APIRouter, Body, Depends, HTTPException, status
 from fastapi_pagination import paginate
 from fastapi_pagination.links import Page
@@ -31,11 +32,12 @@ async def get_movies():
 @router.get("/me", tags=["movies"], response_model=Page[MovieListUser])
 async def get_user_movies(credentials: dict = Depends(JWTBearer())):
     user = get_user(credentials)
-    return paginate(user.movies)
+    movies = MovieService().get_all_movies_for_user(user.id)
+    return paginate(movies)
 
 
 @router.get("/{movie_id}", tags=["movies"], response_model=MovieListPublic)
-async def get_movie(movie_id: int, credentials: dict = Depends(OptionalJWTBearer())):
+async def get_movie(movie_id: Union[int, str], credentials: dict = Depends(OptionalJWTBearer())):
     movie = MovieService().get_movie(movie_id)
     if movie.is_public is False:
         if not credentials:
@@ -54,7 +56,7 @@ async def get_movie(movie_id: int, credentials: dict = Depends(OptionalJWTBearer
 
 @router.patch("/{movie_id}", tags=["movies"], response_model=MovieListUser)
 async def update_movie(
-    movie_id: int,
+    movie_id: Union[int, str],
     movie: MovieCreate = Body(...),
     credentials: dict = Depends(JWTBearer()),
 ):

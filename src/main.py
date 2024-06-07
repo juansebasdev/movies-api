@@ -5,9 +5,9 @@ from src.auth.router import router as auth_router
 from src.movies.router import router as movies_router
 from src.wtapi.router import router as wtapi_router
 from src.config import HOST, PORT, Base
-from src.database import ConfigDatabase
+from src.database import SQLDatabase
 
-Base.metadata.create_all(bind=ConfigDatabase().engine)
+Base.metadata.create_all(bind=SQLDatabase().engine)
 
 app = FastAPI(
     title="Movies API",
