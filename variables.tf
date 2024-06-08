@@ -46,7 +46,7 @@ variable "data_repository" {
   default     = "NOSQL"
 }
 
-variable "APP_URL" {
+variable "app_url" {
   description = "App URL"
   type        = string
 }

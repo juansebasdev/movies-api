@@ -54,7 +54,7 @@ resource "google_cloud_run_service" "gc_run_service" {
         }
         env {
           name  = "APP_URL"
-          value = var.APP_URL
+          value = var.app_url
         }
         env {
           name  = "HOST"
