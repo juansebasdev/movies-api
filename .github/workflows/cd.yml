@@ -27,14 +27,12 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           service-account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
-          credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
       - name: Log in to Google Artifact Registry
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         run: |
           gcloud config set project ${{ secrets.PROJECT_ID }}
           gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
