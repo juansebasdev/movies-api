@@ -84,7 +84,7 @@ Movies API support SQL (with SQLite) and NoSQL (with MongoDB) connections, you _
 
     To run the project, use this command
     ```sh
-    uvicorn src.main:app --reload
+    uvicorn src.main:app --port 8080 --reload
     ```
 
     > [!NOTE]

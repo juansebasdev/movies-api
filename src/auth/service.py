@@ -2,6 +2,7 @@ import requests
 from src.auth.models import User
 from src.database import NoSQLDatabase, SQLDatabase
 from src.config import (
+    APP_URL,
     DATA_REPOSITORY,
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
@@ -18,7 +19,7 @@ class GoogleAuthenticator:
             "client_id": GOOGLE_CLIENT_ID,
             "client_secret": GOOGLE_CLIENT_SECRET,
             "grant_type": "authorization_code",
-            "redirect_uri": f"http://{HOST}:{PORT}/auth/callback",
+            "redirect_uri": f"{APP_URL}/auth/callback",
             "code": code,
         }
 
