@@ -2,6 +2,27 @@
 
 This is an REST API for users to share and recommend their favorite movies.
 
+## Usage
+Movies API is available in 
+
+[https://movies-api-dev-service-2q7oct76la-ue.a.run.app]()
+
+> [!NOTE]
+> There's a swagger documentation you can use to test the API in
+> [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/docs]()
+
+### Login Action
+> [!IMPORTANT]
+>
+
+This endpoint [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/login]() will return an url that will redirect the user to google auth window, after that it will return a JWT in the field `idToken`
+
+This is a Bearer token that the API will request in order to authenticate users in the endpoints which require it.
+
+### Database
+Movies API support SQL (with SQLite) and NoSQL (with MongoDB) connections, you __MUST__ set `DATA_REPOSITORY` env variable with `SQL` or `NOSQL`
+
+
 ## Development
 > [!IMPORTANT]
 > Use Python Version 3.12
@@ -80,4 +101,17 @@ or using the `make` command within the Makefile
 
 ```sh
 make test
+```
+
+## Continuous Integration
+Github Actions is used to run tests and verify the operation of the API. This pipeline is available in [ci.yml](/.github/workflows/ci.yml).
+
+## Continuous Deployment
+Github Actions is used to deploy the API in GCP, where Infrastructure is also managed using `Terraform`. This pipeline is available in [cd.yml](/.github/workflows/cd.yml).
+
+## Docs
+The API documentation is generate automatically because of the framework: `FastAPI`, therefore it updates dynamically and can be requested locally in
+
+```sh
+http://{HOST}:{PORT}/docs
 ```
