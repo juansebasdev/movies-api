@@ -23,20 +23,21 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          service-account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
-        with:
-          version: "latest"
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          project_id: ${{ secrets.PROJECT_ID }}
 
       - name: Log in to Google Artifact Registry
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         run: |
-          echo $GOOGLE_APPLICATION_CREDENTIALS | base64 --decode > /tmp/account.json
-          gcloud auth activate-service-account --key-file=/tmp/account.json
-          gcloud auth configure-docker
+          gcloud config set project ${{ secrets.PROJECT_ID }}
+          gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
 
       - name: Build and push Docker image
         id: build
