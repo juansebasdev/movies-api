@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException
 from src.auth.schemas import LoginResponse
 from src.auth.service import GoogleAuthenticator, UserService
 from src.auth.utils import UserExtractor
-from src.config import GOOGLE_CLIENT_ID, HOST, PORT
+from src.config import APP_URL, GOOGLE_CLIENT_ID
 
 
 router = APIRouter()
@@ -18,7 +18,7 @@ router = APIRouter()
     response_model=LoginResponse,
 )
 async def login():
-    redirect_uri = f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={GOOGLE_CLIENT_ID}&redirect_uri=http://{HOST}:{PORT}/auth/callback&scope=openid%20profile%20email&access_type=offline"
+    redirect_uri = f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={GOOGLE_CLIENT_ID}&redirect_uri={APP_URL}/auth/callback&scope=openid%20profile%20email&access_type=offline"
     return {"url": redirect_uri}
 
 

@@ -13,7 +13,7 @@ Movies API is available in
 
 ### Login Action
 > [!IMPORTANT]
->
+> 
 
 This endpoint [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/login]([https://movies-api-dev-service-2q7oct76la-ue.a.run.app/login) will return an url that will redirect the user to google auth window, copy it in the browser and after that it will return a JWT in the field `idToken`
 

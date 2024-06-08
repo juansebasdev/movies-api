@@ -70,4 +70,5 @@ jobs:
           TF_VAR_sql_url: ${{ secrets.SQL_URL }}
           TF_VAR_mongo_url: ${{ secrets.MONGO_URL }}
           TF_VAR_data_repository: ${{ secrets.DATA_REPOSITORY }}
+          TF_VAR_app_url: ${{ secrets.APP_URL }}
         run: terraform apply -auto-approve
