@@ -51,7 +51,9 @@ jobs:
           terraform_version: 1.8.2
 
       - name: Initialize Terraform
-        run: terraform init
+        run: |
+          terraform init
+          terraform workspace select ${{ secrets.ENVIRONMENT }} || terraform workspace new ${{ secrets.ENVIRONMENT }}
 
       - name: Validate Terraform
         run: terraform validate
