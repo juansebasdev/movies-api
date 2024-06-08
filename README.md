@@ -5,17 +5,17 @@ This is an REST API for users to share and recommend their favorite movies.
 ## Usage
 Movies API is available in 
 
-[https://movies-api-dev-service-2q7oct76la-ue.a.run.app]()
+[https://movies-api-dev-service-2q7oct76la-ue.a.run.app](https://movies-api-dev-service-2q7oct76la-ue.a.run.app)
 
 > [!NOTE]
 > There's a swagger documentation you can use to test the API in
-> [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/docs]()
+> [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/docs](https://movies-api-dev-service-2q7oct76la-ue.a.run.app/docs)
 
 ### Login Action
 > [!IMPORTANT]
 >
 
-This endpoint [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/login]() will return an url that will redirect the user to google auth window, after that it will return a JWT in the field `idToken`
+This endpoint [https://movies-api-dev-service-2q7oct76la-ue.a.run.app/login]([https://movies-api-dev-service-2q7oct76la-ue.a.run.app/login) will return an url that will redirect the user to google auth window, copy it in the browser and after that it will return a JWT in the field `idToken`
 
 This is a Bearer token that the API will request in order to authenticate users in the endpoints which require it.
 
